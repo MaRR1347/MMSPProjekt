@@ -5,13 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMSPProjekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="768" Width="1280">
     <Grid>
-        <ListView x:Name="_ListView">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="300" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock x:Name="_formHeader">Dodaj piosenkę do listy!</TextBlock>
+
+            <Label>Wpisz tytuł:</Label>
+            <TextBox x:Name="_title"></TextBox>
+
+            <Label>Wpisz wykonawcę:</Label>
+            <TextBox x:Name="_author"></TextBox>
+
+            <TextBlock x:Name="_wynik" ></TextBlock>
+    
+            <Label>Wpisz Długość:</Label>
+            <TextBox x:Name="_length"></TextBox>
+
+            <Button Click="DodajEl" Width="80" Height="50">Dodaj</Button>
+        </StackPanel>
+
+        <ListView x:Name="_songs" Grid.Column="1">
+
         </ListView>
 
-        <Button Click="DodajEl" Width="100" Height="20"></Button>
-        
-        
+        <ListView x:Name="_favs"  ></ListView>
+
     </Grid>
 </Window>
