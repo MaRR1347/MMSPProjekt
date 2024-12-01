@@ -5,39 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMSPProjekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1280">
+        Title="MainWindow" Height="920" Width="1280" ResizeMode="CanMinimize"
+        Background="#121212"
+        Foreground="#fff">
+    <Window.Resources>
+
+    </Window.Resources>
+
     <Grid>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="475"/>
+            <ColumnDefinition Width="460"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="300" />
-        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
-            <TextBlock x:Name="_formHeader">Dodaj piosenkę do listy!</TextBlock>
 
-            <Label>Wpisz tytuł:</Label>
-            <TextBox x:Name="_title"></TextBox>
+        <Border Style="{StaticResource GroupBorder}" Margin="15">
+            <StackPanel>
+                <Border Style="{StaticResource HeaderBorder}" >
+                    <TextBlock Style="{StaticResource Header}">Lista Piosenek<TextBlock ToolTip="Klikając na piosenkę, dodajesz ją do ulubionych">|?|</TextBlock></TextBlock>
+                </Border>
+                <ListView x:Name="_songs" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                </ListView>
+            </StackPanel>
+        </Border>
 
-            <Label>Wpisz wykonawcę:</Label>
-            <TextBox x:Name="_author"></TextBox>
 
-            <TextBlock x:Name="_wynik" ></TextBlock>
-    
-            <Label>Wpisz Długość:</Label>
-            <TextBox x:Name="_length"></TextBox>
 
-            <Button Click="DodajEl" Width="80" Height="50">Dodaj</Button>
-        </StackPanel>
 
-        <ListView x:Name="_songs" Grid.Column="1">
+        <Border Style="{StaticResource GroupBorder}" Grid.Column="1">
+            <StackPanel>
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Style="{StaticResource Header}">Ulubione Piosenki</TextBlock>
+                </Border>
+                <ListView x:Name="_favs" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"></ListView>
+            </StackPanel>
+        </Border>
 
-        </ListView>
+        <Border Style="{StaticResource GroupBorder}" Grid.Column="2">
+            <StackPanel>
+                <Border Style="{StaticResource HeaderBorder}">
+                    <TextBlock Style="{StaticResource Header}">Dodaj do listy</TextBlock>
+                </Border>
+                <Label Style="{StaticResource formLabel}">Wpisz tytuł:</Label>
+                <TextBox x:Name="_title"></TextBox>
 
-        <ListView x:Name="_favs"  ></ListView>
+                <Label Style="{StaticResource formLabel}">Wpisz wykonawcę:</Label>
+                <TextBox x:Name="_author"></TextBox>
+
+                <Label Style="{StaticResource formLabel}">Wpisz Długość: [3:20]</Label>
+                <TextBox x:Name="_length"></TextBox>
+
+                <Border CornerRadius="25" Width="120" Height="50" Background="#06cf26">
+                    <Button Style="{StaticResource addButton}" Click="DodajEl">Dodaj</Button>
+                </Border>
+
+                <Label x:Name="result" Style="{StaticResource formLabel}"></Label>
+            </StackPanel>
+        </Border>
+
 
     </Grid>
 </Window>

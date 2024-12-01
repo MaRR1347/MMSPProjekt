@@ -4,6 +4,140 @@
              xmlns:local="clr-namespace:MMSPProjekt"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
+        <Style TargetType="TextBlock" >
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>   
+            <Setter Property="HorizontalAlignment" Value="left"/>
+            <Setter Property="Foreground" Value="White"/>
+        
+        </Style>
+            
+        <Style TargetType="GroupBox">
+            <Setter Property="Background" Value="#1f1f1f" />
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
 
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        
+        <Style TargetType="ListView">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Height" Value="800"/>
+            <Setter Property="Padding" Value="10"/>
+            
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="#282828"/>
+            <!--<Setter Property="Margin" Value="10 10"/>-->
+            <Setter Property="Width" Value="425"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Margin" Value="0 6"/>
+
+        </Style>
+
+        <Style x:Key="cover"  TargetType="Image">
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Margin" Value="-5 0 0 0"/>
+        </Style>
+        
+        <Style x:Key="Header" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#fff"/>
+            <Setter Property="Padding" Value="20 10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        
+        <Style x:Key="HeaderBorder" TargetType="Border">
+            <Setter Property="Background" Value="#333"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="40 10"/>
+        </Style>
+
+        <Style x:Key="GroupBorder" TargetType="Border">
+            <Setter Property="Margin" Value="0 15 15 15"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Background" Value="#1f1f1f" />
+        </Style>
+
+        <Style x:Key="formLabel" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Background" Value="#333"/>
+            <Setter Property="Foreground" Value="#fff"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0 0 0 15"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style x:Key="addButton" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="40" />
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Height" Value="90"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="controls"  TargetType="Button">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#fff"/>
+
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="16px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+        
+        <Style x:Key="heart" TargetType="Image">
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Source" Value="Images/heart.png"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Source" Value="Images/heart_full.png"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="bin" TargetType="Image">
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Source" Value="Images/bin.png"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Source" Value="Images/bin_full.png"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        
+        
+        
     </Application.Resources>
 </Application>

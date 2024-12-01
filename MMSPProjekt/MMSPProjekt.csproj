@@ -8,4 +8,50 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="NewFolder1\**" />
+    <EmbeddedResource Remove="NewFolder1\**" />
+    <None Remove="NewFolder1\**" />
+    <Page Remove="NewFolder1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Images\bin.png" />
+    <None Remove="Images\bin_full.png" />
+    <None Remove="Images\Everlong.jpg" />
+    <None Remove="Images\heart.png" />
+    <None Remove="Images\HeartShapedBox.jpg" />
+    <None Remove="Images\heart_full.png" />
+    <None Remove="Images\HighwayToHell.jpg" />
+    <None Remove="Images\HighwayToHell.png" />
+    <None Remove="Images\KolysankaDlaNieznajomej.jpg" />
+    <None Remove="Images\LivinOnAPrayer.jpg" />
+    <None Remove="Images\livinonaprayer.png" />
+    <None Remove="Images\StairwaytoHeaven.jpg" />
+    <None Remove="Images\StairwaytoHeaven.png" />
+    <None Remove="Images\UnderTheBridge.jpg" />
+    <None Remove="Images\UptownGirl.jpg" />
+    <None Remove="Images\Warszawa.jpg" />
+    <None Remove="Images\ZamkiNaPiasku.jpg" />
+    <None Remove="Images\ZaOstatniGrosz.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\bin.png" />
+    <Resource Include="Images\bin_full.png" />
+    <Resource Include="Images\Everlong.jpg" />
+    <Resource Include="Images\heart.png" />
+    <Resource Include="Images\HeartShapedBox.jpg" />
+    <Resource Include="Images\heart_full.png" />
+    <Resource Include="Images\HighwayToHell.jpg" />
+    <Resource Include="Images\KolysankaDlaNieznajomej.jpg" />
+    <Resource Include="Images\LivinOnAPrayer.jpg" />
+    <Resource Include="Images\StairwaytoHeaven.jpg" />
+    <Resource Include="Images\UnderTheBridge.jpg" />
+    <Resource Include="Images\UptownGirl.jpg" />
+    <Resource Include="Images\Warszawa.jpg" />
+    <Resource Include="Images\ZamkiNaPiasku.jpg" />
+    <Resource Include="Images\ZaOstatniGrosz.jpg" />
+  </ItemGroup>
+
 </Project>

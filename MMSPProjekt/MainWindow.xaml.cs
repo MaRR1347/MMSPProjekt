@@ -1,32 +1,38 @@
 ﻿using System.Collections.ObjectModel;
-using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MMSPProjekt
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Object> songs = new ObservableCollection<Object>();
-        static ObservableCollection<Button> bttns = new ObservableCollection<Button>();
-        static ObservableCollection<Button> favs = new ObservableCollection<Button>();
+        static ObservableCollection<Grid> grids = new ObservableCollection<Grid>();
+        static ObservableCollection<Grid> favs = new ObservableCollection<Grid>();
+
         public MainWindow()
         {
             InitializeComponent();
-            
-            _songs.ItemsSource = bttns;
+
+            _songs.ItemsSource = grids;
             _favs.ItemsSource = favs;
 
-            addSong("Livin on a prayer", "Bon Jovi", "3:30");
-            addSong("Livin on a prayer", "Bon Jovi", "3:30");
-            addSong("Livin on a prayer", "Bon Jovi", "3:30");
+
+            addSong("Livin' on a prayer", "Bon Jovi", "4:09", "LivinOnAPrayer.jpg");
+            addSong("Highway to Hell", "AC/DC", "3:28", "HighwayToHell.jpg");
+            addSong("Stairway To Heaven", "Led Zeppelin", "8:02", "StairwayToHeaven.jpg");
+            addSong("Heart Shaped Box", "Nirvana", "4:41", "HeartShapedBox.jpg");
+            addSong("Everlong", "Foo Fighters", "4:10", "Everlong.jpg");
+            addSong("Under the Bridge", "Red Hot Chilli Peppers", "4:24", "UnderTheBridge.jpg");
+            addSong("Uptown Girl", "Billy Joel", "3:17", "UptownGirl.jpg");
+            addSong("Zamki na piasku", "Lady Pank", "4:30", "ZamkiNaPiasku.jpg");
+            addSong("Kołysanka dla nieznajomej", "Perfect", "3:34", "KolysankaDlaNieznajomej.jpg");
+            addSong("Za ostatni grosz", "Budka Suflera", "4:50", "ZaOstatniGrosz.jpg");
+            addSong("Warszawa", "T.Love", "4:12", "Warszawa.jpg");
         }
 
-
+        //S
         private void DodajEl(object sender, RoutedEventArgs e)
         {
             String title = _title.Text;
@@ -35,61 +41,150 @@ namespace MMSPProjekt
             if (title != "" && author != "" && length != "")
             {
                 addSong(title, author, length);
-                _formHeader.Text = "Udało się";
+                result.Content = "Udało się";
             }
             else
             {
-                _formHeader.Text = "Wystąpił błąd";
+                result.Content = "Uzupełnij Dane";
             }
         }
-        
-        public void addSong(String title, String author, String length)
+
+
+        public void addSong(String title, String author, String length, String imgSrc = "")
         {
-            Piosenka newSong = new Piosenka(title, author, length);
-            songs.Add(newSong);
+            Piosenka newSong = new Piosenka(title, author, length, imgSrc);
         }
 
         public class Piosenka
         {
-            public String title;
-            public String author;
-            public String length;
-            //private int songID;
-           
+            private String title;
+            private String author;
+            private String length;
+            private String imgSrc;
+            private bool isFav = false;
 
-            public Piosenka(String title, String author, String length)
+            public Piosenka(String title, String author, String length, String imgSrc = "")
             {
                 this.title = title;
                 this.author = author;
                 this.length = length;
-                //this.songID = songID;
-               
+                this.imgSrc = imgSrc;
 
-                Button button1 = new Button();
-                button1.Content = title + "|\t" + author + "|\t" + length;
-                button1.Width = 300;
-                button1.Height = 50;
-                button1.HorizontalAlignment = HorizontalAlignment.Left;
 
-                button1.Click += (sender, e) => addToFav(button1);
-                MainWindow.bttns.Add(button1);
+                Grid grid = createGrid(title, author, length, imgSrc);
 
-                bttns.Add(button1);
+                Button __add = new Button();
+                __add.Style = __add.FindResource("controls") as Style;
+                
+                Image __heart = new Image();
+                __heart.Style = __heart.FindResource("heart") as Style;
 
+                //__heart.Source = new BitmapImage(new Uri(@"Images/heart_full.png", UriKind.Relative
+
+                __add.Content = __heart;
+                __add.Click += (sender, e) => addToFav();
+
+
+                Grid.SetColumn(__add, 2);
+                Grid.SetRowSpan(__add, 2);
+                grid.Children.Add(__add);
+
+                grids.Add(grid);
             }
 
-            public void addToFav(Button button1)
+
+
+            public void addToFav()
             {
-                Button button2 = new Button();
-                button2.Content = title + "|\t" + author + "|\t" + length;
-                button2.Width = 300;
-                button2.Height = 50;
-                button2.Click += (sender, e) => remFromFav(button2);
-                favs.Add(button2);
+                if (!isFav)
+                {
+                    Grid grid = createGrid(title, author, length, imgSrc);
+
+                    Button __rem = new Button();
+                    __rem.Style = __rem.FindResource("controls") as Style;
+
+                    Image __bin = new Image();
+                    __bin.Style = __bin.FindResource("bin") as Style;
+                    
+                    __rem.Content = __bin;
+                    __rem.Click += (sender, e) => remFromFav(grid);
+
+                    Grid.SetColumn(__rem, 2);
+                    Grid.SetRowSpan(__rem, 2);
+                    grid.Children.Add(__rem);
+
+                    favs.Add(grid);
+                    isFav = true;
+                    
+                }
+                else
+                {
+                    string messageBoxText = "Ta piosenka jest już w polubionych";
+                    string caption = "Błąd";
+                    MessageBoxButton button = MessageBoxButton.OK;
+                    MessageBoxImage icon = MessageBoxImage.Asterisk;
+
+                    MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+                }
             }
-            public void remFromFav(Button button2)
+            private void remFromFav(Grid grid)
             {
-                favs.Remove(button2);
+                favs.Remove(grid);
+                isFav = false;
+            }
+
+            private Grid createGrid(String title, String author, String length, String imgSrc)
+            {
+                Grid grid = new Grid();
+                grid.Width = 420;
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(70) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60) });
+
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(35) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(25) });
+
+                if (imgSrc != "")
+                {
+                    Image __img = new Image();
+                    __img.Style = __img.FindResource("cover") as Style;
+                    __img.Source = new BitmapImage(new Uri(@"Images/" + imgSrc, UriKind.Relative));
+                    Grid.SetRowSpan(__img, 2);
+                    grid.Children.Add(__img);
+                }
+
+                TextBlock __title = new TextBlock();
+                __title.Text = title;
+                __title.Foreground = Brushes.White;
+                __title.FontSize = 18;
+                __title.FontWeight = FontWeights.Bold;
+
+                TextBlock __author = new TextBlock();
+                __author.Text = author;
+                __author.Foreground = Brushes.White;
+                __author.FontSize = 15;
+                __author.Foreground = Brushes.LightGray;
+
+                TextBlock __length = new TextBlock();
+                __length.Text = length;
+                __length.FontWeight = FontWeights.Light;
+                __length.Foreground = Brushes.LightGray;
+
+
+                Grid.SetColumn(__title, 1);
+
+                Grid.SetColumn(__author, 1);
+                Grid.SetRow(__author, 1);
+
+                Grid.SetColumn(__length, 3);
+                Grid.SetRowSpan(__length, 2);
+
+                grid.Children.Add(__title);
+                grid.Children.Add(__author);
+                grid.Children.Add(__length);
+
+                return grid;
             }
         }
     }
