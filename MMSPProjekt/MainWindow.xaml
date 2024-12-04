@@ -8,31 +8,22 @@
         Title="MainWindow" Height="920" Width="1280" ResizeMode="CanMinimize"
         Background="#121212"
         Foreground="#fff">
-    <Window.Resources>
-
-    </Window.Resources>
-
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="475"/>
             <ColumnDefinition Width="460"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-
         <Border Style="{StaticResource GroupBorder}" Margin="15">
             <StackPanel>
                 <Border Style="{StaticResource HeaderBorder}" >
-                    <TextBlock Style="{StaticResource Header}">Lista Piosenek<TextBlock ToolTip="Klikając na piosenkę, dodajesz ją do ulubionych">|?|</TextBlock></TextBlock>
+                    <TextBlock Style="{StaticResource Header}">Lista Piosenek</TextBlock>
                 </Border>
                 <ListView x:Name="_songs" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 </ListView>
             </StackPanel>
         </Border>
-
-
-
 
         <Border Style="{StaticResource GroupBorder}" Grid.Column="1">
             <StackPanel>
@@ -56,6 +47,9 @@
 
                 <Label Style="{StaticResource formLabel}">Wpisz Długość: [3:20]</Label>
                 <TextBox x:Name="_length"></TextBox>
+
+                <Label Style="{StaticResource formLabel}">*Dodaj link:</Label>
+                <TextBox x:Name="_hyperLink"></TextBox>
 
                 <Border CornerRadius="25" Width="120" Height="50" Background="#06cf26">
                     <Button Style="{StaticResource addButton}" Click="DodajEl">Dodaj</Button>
